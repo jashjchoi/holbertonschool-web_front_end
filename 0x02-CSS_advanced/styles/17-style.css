@@ -415,6 +415,9 @@ a:active {
 .card-category {
     color: var(--color-primary);
 }
+.section {
+    padding: var(--section-padding);
+}
 .section-header {
     text-align: var(--section-header-align);
     padding: var(--section-header-padding);
