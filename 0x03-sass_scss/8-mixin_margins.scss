@@ -1,0 +1,18 @@
+/*assigns:
+Margin left and right at 10px to body tags
+Margin left and right at 15px to div tags*/
+@mixin values_body {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+@mixin values_div {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+body {
+    @include values_body;
+}
+div {
+    @include values_div;
+}
