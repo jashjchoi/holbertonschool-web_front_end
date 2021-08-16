@@ -1,0 +1,1 @@
+Images folder for responsive design project
