@@ -1030,6 +1030,14 @@ ul.row {
 	font-variant: small-caps;
 }
 
+@media (max-width: 767px) {
+	.post-comments {
+		width: calc(100% - 3rem);
+		margin: 2rem;
+		padding: 0;
+	}
+}
+
 /* Basic form
       ============================= */
 
