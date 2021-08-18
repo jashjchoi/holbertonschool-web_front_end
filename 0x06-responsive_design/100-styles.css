@@ -958,6 +958,16 @@ ul.row {
 	text-align: center;
 }
 
+@media (max-width: 767px) {
+	.post {
+		flex-direction: column;
+		margin: 2rem;
+	}
+	.post-content {
+		padding-left: 0;
+	}
+}
+
 /* Post Meta
       ============================= */
 
