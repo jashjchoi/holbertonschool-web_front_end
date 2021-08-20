@@ -1,0 +1,1 @@
+Image Folder for 0x07-accessibility project
