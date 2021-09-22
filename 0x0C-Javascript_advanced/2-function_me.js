@@ -1,7 +1,7 @@
 function welcomeMessage (fullName) {
-    alert("Welcome" + " " + fullName);
-};
+  alert('Welcome' + ' ' + fullName);
+}
 
-let guillaume = welcomeMessage("Guillaume");
-let alex = welcomeMessage("Alex"); 
-let fred = welcomeMessage("Fred");
+const guillaume = welcomeMessage('Guillaume');
+const alex = welcomeMessage('Alex');
+const fred = welcomeMessage('Fred');
