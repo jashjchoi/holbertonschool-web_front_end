@@ -18,8 +18,6 @@ function processOrder (itemName, callbackPayment, callbackError) {
   if (stock[itemName] != 0) { callbackPayment(itemName); } else { callbackError(itemName); }
 }
 
-const userPrompt = window.prompt(
-  'Please enter the item you would like to purchase (Macbook, iPhone)'
-);
+const userPrompt = window.prompt('Please enter the item you would like to purchase (Macbook, iPhone)');
 
 processOrder(userPrompt.toLowerCase(), processPayment, processError);
