@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 11 - Post query</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous">
+    </script>
+  </head>
+  <body>
+    <script type="application/javascript">
+      function addPostRow(data) {
+        $("body").append(
+          `<p><span>Post created with id ${data.id}, title: ${data.title}, author: ${data.author}</span>
+          </p>`
+        );
+      }
+      function listPost(search) {
+        var url = "http://localhost:3000/posts";
+        $.get(url, function (data, status) {
+          if (status === "success") {
+            for (let index = 0; index < data.length; index++) {
+              addPostRow(data[index]);
+            }
+          } else {
+            alert("Server Error");
+          }
+        });
+      }
+      function buildForm() {
+        $("body").append(
+          `<form>
+              <div>
+                  <label for="author">Author</label>
+                  <input type="text" id="author">
+              </div>
+              <div>
+                  <label for="title">Title</label>
+                  <textarea  id="title"></textarea>
+              </div>
+              <input type="submit" value="Submit">
+          </form>`
+        );
+        $("form").submit(function (event) {
+          event.preventDefault();
+          sendForm();
+        });
+      }
+      function sendForm() {
+        var author = $("#author").val();
+        var title = $("#title").val();
+        var url = "http://localhost:3000/posts";
+        $.post(url,
+          { author, title }, function (data, status) {
+            if (status !== "success") {
+              alert("Error sending the POST query");
+            }
+            addPostRow(data);
+          },
+          "json"
+        );
+      }
+      $(document).ready(function () {
+        buildForm();
+        listPost();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title>Task 7 Query - Setup your dev environment</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous">
+        </script>
+    </head>
+    <body>
+        <script type="application/javascript">
+            function createSearchForm() {
+                $("body").append(
+                "<input type='text'> <button id='btn'>Submit</button>"
+                );
+                $("#btn").click(function () {
+                    var search = $("input").val();
+                    queryWikipedia(search);
+                });
+                $("body").append("<ul></ul>");
+            }
+            function addNewArticle(id, title, snippet) {
+                $("ul").append(
+                `<li>
+                        <p>${id} - <b>${title}</b></p>
+                        <p>${snippet}</p>
+                    </li>`
+                );
+            }
+            function queryWikipedia(search) {
+                var url = "https://en.wikipedia.org/w/api.php";
+                var params = {
+                    format: "json",
+                    action: "query",
+                    list: "search",
+                    srsearch: search,
+                };
+                url = url + "?origin=*";
+                $.get(url, params, function (data, status) {
+                    var array = data.query.search;
+                    for (let index = 0; index < array.length; index++) {
+                        addNewArticle(
+                            array[index].pageid,
+                            array[index].title,
+                            array[index].snippet
+                        );
+                    }
+                });
+            }
+            $(document).ready(function () {
+            createSearchForm();
+        });
+        </script>
+  </body>
+</html>
