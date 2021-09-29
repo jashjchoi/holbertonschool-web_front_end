@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title>Task 6</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <script type="application/javascript">
+            function createFamilyTree() {
+              $("body").append("<table>", "</table>");
+              $("table").append("<tr>", "</tr>");
+              $("table tr").append("<th></th>");
+              $("table tr").append("<th></th>");
+              $("table tr th").text((index) => {
+                if (index == 0) return "Firstname";
+                return "Lastname";
+              });
+              $("table").append("<tbody></tbody>");
+            }
+            function addNewMember(firstName, lastName, opt) {
+              if (opt === "before") {
+                $("table tbody").prepend(
+                  `<tr><td>${firstName}</td><td>${lastName}</td><td>(X)</td></tr>`
+                );
+              } else {
+                $("table tbody").append(
+                  `<tr><td>${firstName}</td><td>${lastName}</td><td>(X)</td></tr>`
+                );
+              }
+              $("table tr td:nth-child(3)").css({
+                "background-color": "orange",
+                cursor: "pointer",
+              });
+              $("table tr td:nth-child(3)").click(function () {
+                $(this).parent().remove();
+              });
+            }
+            function createForm() {
+              $("table").before(
+                "<input type='text' id='firstName'>\
+                  <input type='text' id='lastName'> <select name='select' id='option'>\
+                      <option value='before'>Before</option>\
+                      <option value='after'>After</option>\
+                  </select>\
+                <button id='btn'>Submit</button>"
+              );
+              $("#btn").click(function () {
+                var fName = $("#firstName").val();
+                var lName = $("#lastName").val();
+                var opt = $("#option").val();
+      
+                addNewMember(fName, lName, opt);
+              });
+            }
+            createFamilyTree();
+            createForm();
+        </script>
+    </body>
+
+</html>

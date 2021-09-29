@@ -10,32 +10,31 @@
         crossorigin="anonymous"></script>
         <script type="application/javascript">
             function createFamilyTree() {
-                $("body").append(
-                    $("<table></table>").append(
-                        $("<thead></thead>").append(
-                            $("<tr></tr>").append("<th>Firstname</th>", "<th>Lastname</th>")
-                            ), $("<tbody></tbody>")
-                    )
-                );
-            };
-            function addNewMember(firstName, lastName){
-                $("tbody").append(
-                    $("<tr></tr>").append(`<td>${firstName}</td>`, `<td>${lastName}</td>`)
-                )
-    
-                $("tbody tr").append($("<td>(x)</td>").click( function() {
-                    $(this).parent().remove();
-                    })
-                );
-                $("tbody tr td").last().css("background-color", "orange");
+              $("body").append("<table>", "</table>");
+              $("table").append("<tr>", "</tr>");
+              $("table tr").append("<th></th>");
+              $("table tr").append("<th></th>");
+              $("table tr th").text((index) => {
+                if (index == 0) return "Firstname";
+                return "Lastname";
+              });
+            }
+            function addNewMember(firstName, lastName) {
+              $("table").append(
+                `<tr><td>${firstName}</td><td>${lastName}</td><td>(X)</td></tr>`
+              );
             }
             createFamilyTree();
-            addNewMember("Guillaume, Salva");
-            addNewMember("Arielle", "Snitz");
-            addNewMember("Fanette", "Snitz");
-            addNewMember("Gerard", "Snitz");
+            addNewMember("Guillaume", "Salva");
+            addNewMember("Arielle", "Snizt");
+            addNewMember("Fanette", "Snizt");
+            addNewMember("Gerard", "Snizt");
             addNewMember("Victor", "Salva");
-        </script>
+            $("table tr td:nth-child(3)").css("background-color", "orange");
+            $("table tr td:nth-child(3)").click(function () {
+              $(this).parent().remove();
+            });
+          </script>
     </body>
 
 </html>

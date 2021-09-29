@@ -8,26 +8,39 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
-        <script type="application/javascript">
-            function createFamilyTree() {
-                $("body").append(
-                    $("<table></table>").append(
-                        $("<thead></thead>").append(
-                            $("<tr></tr>").append("<th>Firstname</th>", "<th>Lastname</th>")
-                            ), $("<tbody></tbody>").append(
-                                $("<tr></tr>").append("<td>Guillaume</td>", "<td>Salva</td>"),
-                                $("<tr></tr>").append("<td>Paulette</td>", "<td>Salva</td>"),
-                                $("<tr></tr>").append("<td>Antoine</td>", "<td>Salva</td>"),
-                        )
-                    )
-                );
-            };
-            function replaceFamilyTree(){
-                $("tbody").html(
-                    $("<tr></tr>").append("<td>Gerard</td>", "<td>Bonissa</td>"));
+    <script type="application/javascript">
+        function createFamilyTree() {
+          $("body").append("<table>", "</table>");
+          $("table").append("<tr>", "</tr>");
+          $("table tr").append("<th></th>");
+          $("table tr").append("<th></th>");
+          $("table tr th").text((index) => {
+            if (index == 0) return "Firstname";
+            return "Lastname";
+          });
+          function addTableElement(first, second) {
+            $("table").append("<tr class='table-row'>", "</tr>");
+            $("table .table-row").append(
+              "<td class='td'></td>",
+              "<td class='td'></td>"
+            );
+            $("tr .td")
+              .slice(-2)
+              .text((index) => {
+                if (index == 0) return first;
+                return second;
+              });
+          }
+          addTableElement("Guillaume", "Salva");
+          addTableElement("Paulette", "Salva");
+          addTableElement("Antoine", "Salva");
         }
         createFamilyTree();
+        function replaceFamilyTree() {
+          $("table tr").slice(1).html("<td>Gerard</td><td>Bonissa</td>");
+          $("table tr").slice(2).remove();
+        }
         replaceFamilyTree();
-        </script>
+      </script>
   </body>
 </html>
