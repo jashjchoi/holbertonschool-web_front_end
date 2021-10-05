@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 6 - Local storage</title>
+  </head>
+  <body>
+    <script type="application/javascript">
+        const availableItems = ['Shampoo','Soap','Sponge','Water'];
+        function addItemToCart (item) {
+            sessionStorage.setItem(item, true);
+            displayCart();
+        }
+        function createStore () {
+            const ul = document.createElement('ul');
+            document.querySelector('body').appendChild(ul);
+            availableItems.forEach(function (item) {
+                const li = document.createElement('li');
+                li.textContent = item;
+                li.addEventListener('click', function () {
+                    addItemToCart(this.textContent);
+                });
+                ul.appendChild(li);
+            });
+        }
+        function displayCart () {
+            let items = Object.keys(sessionStorage);
+            if (items.length > 0) {
+              let p = document.createElement("p");
+              p.innerText = `You previously had ${items.length} items in your cart`;  
+              document.body.appendChild(p);
+            } 
+        }
+        if (typeof(sessionStorage) !== 'undefined') {
+            createStore();
+            displayCart();
+        } else {
+            alert('Sorry, your browser does not support Web storage. Try again with a better one');
+        }
+            
+    </script>
+  </body>
+</html>
